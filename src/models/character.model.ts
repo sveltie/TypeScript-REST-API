@@ -1,23 +1,24 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Model, Document } from 'mongoose';
 
-interface ICharacter {
+export interface ICharacter extends Document {
     name: string;
     birthday: string;
-    constellation?: string;
     nation: string;
-    affiliation?: string;
-    special_dish?: string;
-    img: string;
 };
 
 const characterSchema = new Schema<ICharacter>({
-    name: {type: String, required: true},
-    birthday: {type: String, required: true},
-    constellation: String,
-    nation: {type: String, required: true},
-    affiliation: String,
-    special_dish: String,
-    img: {type: String, required: true}
+    name: {
+        type: String,
+        required: [true, 'Please provide the character name.']
+    },
+    birthday: {
+        type: String,
+        required: [true, 'Please provide the character birthday.']
+    },
+    nation: {
+        type: String,
+        required: [true, 'Please provide the character nation.']
+    },
 });
 
-export const Character = model<ICharacter>('Character', characterSchema);
+export const Character: Model<ICharacter> = model<ICharacter>('Character', characterSchema);

@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 
-class IndexRoutes {
-    router: Router;
+export class IndexRoutes {
+    public router: Router;
 
     constructor() {
         this.router = Router();
@@ -19,5 +19,3 @@ class IndexRoutes {
 
 const indexRoutes = new IndexRoutes();
 indexRoutes.routes();
-
-export default indexRoutes.router;
